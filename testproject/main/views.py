@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpRequest
+from .models import Image
 
-# Create your views here.
+def AddImage(request):
+    pass

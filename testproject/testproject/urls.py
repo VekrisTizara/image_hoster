@@ -16,8 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
+from main.views import add_image_view, success
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('image_upload', add_image_view, name = 'upload_image'),
+    path('success', success, name = 'success'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

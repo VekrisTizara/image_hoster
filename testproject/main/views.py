@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
 from .forms import ImageForm
-from django.core.files import File
+from .models import Image
 
 def add_image_view(request):
     if request.method == 'POST':
@@ -19,3 +20,7 @@ def add_image_view(request):
 
 def success(request):
     return HttpResponse('successfully uploaded')
+
+class ImageListView(ListView):
+    model = Image
+    context_object_name = 'images'

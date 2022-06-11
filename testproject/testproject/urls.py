@@ -19,7 +19,7 @@ from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView, LogoutView
-from main.views import add_image_view, success
+from main.views import add_image_view, success, ImageListView
 
 
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('success', success, name = 'success'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('my_images/', ImageListView.as_view(), name='image_list'),
 ]
 
 if settings.DEBUG:
